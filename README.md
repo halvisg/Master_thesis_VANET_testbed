@@ -5,7 +5,7 @@ This repository provides code and installation instruction to complement my mast
 
 This installation instruction only covers setup and execution of simulated scenarios. The approach for using it with real drones is quite similar. There are two differences. When using real drones, there is no need for running ArduPilot SITL. The other difference is that MAVProxy needs to be started manually for each drone when real drones are used. For drones simulated with ArduPilot SITL, MAVProxy is automatically started for each drone instance. Also, these installation instructions are as of now only made for systems running Linux.
 
-This guide has been tested on a clean image of Ubuntu 18.0
+This guide has been tested on a clean image of Ubuntu 18.04.3.
 
 There are several prerequisites needed for using this testbed:
 
@@ -44,41 +44,58 @@ foo@bar:~$ export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
 Now, SUMO should be installed, and TraCI should be ready for use.
 
 ## 3. Install dronekit and numpy
-
-dronekit can be installed directly through pip:
+dronekit and numpy as neccessary packages that needs to be installed.
+both packages can be installed directly through pip:
 
 ```console
 foo@bar:~$ pip3 install dronekit
 ```
-
-## 4. Install necessary Python-packages:
-
 ```console
 foo@bar:~$ pip3 install numpy
 ```
 
+## 4. Install necessary Python-packages:
+
 
 4. Clone and install ArduPilot/ArduPilot SITL
-These instructions have been concretisized from the [installation page](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux), provided by ArduPilot.
+These instructions have been concretisized from the [installation page](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux) provided by ArduPilot.
 
 
 ```console
-foo@bar:~$ https://github.com/ArduPilot/ardupilot.git
+foo@bar:~$ git clone https://github.com/ArduPilot/ardupilot.git
 foo@bar:~$ cd ardupilot
 foo@bar:~$ git submodule update --init --recursive
 ```
 
 Now that we have cloned ArduPilot, we have to install some required packages.
-From the ardupilot directory:
+From the ardupilot directory, run:
 
 ```console
 foo@bar:~$ Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
 
-Now, we can....
+5. Install QGroundControl
+The installation instructions from this step is taken from QGroundControl's [documentation](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html).
 
+Some initial setup is required for QGroundControl to run correctly:
 
+```console
+foo@bar:~$ sudo usermod -a -G dialout $USER
+foo@bar:~$ sudo apt-get remove modemmanager -y
+foo@bar:~$ sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl -y
+```
 
+The download link for QGroundControl can be found [here](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage) (direct [link](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage)).
+
+After downloading, QGrounControl can be started:
+
+```console
+foo@bar:~$ ~/Downloads/QGroundControl.AppImage
+```
+
+6. Configure ArduPilot SITL
+
+Now, we have downloaded and installed all the required software and tools to run our testbed.
 
 
 
