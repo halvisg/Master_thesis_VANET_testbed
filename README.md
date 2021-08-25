@@ -1,7 +1,7 @@
 # Master_thesis_VANET_testbed
 This repository provides code and installation instruction to complement my master thesis. 
 
-Installation instructions:
+# Installation instructions:
 
 This installation instruction only covers setup and execution of simulated scenarios. The approach for using it with real drones is quite similar. There are two differences. When using real drones, there is no need for running ArduPilot SITL. The other difference is that MAVProxy needs to be started manually for each drone when real drones are used. For drones simulated with ArduPilot SITL, MAVProxy is automatically started for each drone instance. Also, these installation instructions are as of now only made for systems running Linux.
 
@@ -9,7 +9,9 @@ This guide has been tested on a clean image of Ubuntu 18.0
 
 There are several prerequisites needed for using this testbed:
 
-1. Download and install SUMO
+## 1. Clone this repo
+
+## 2. Download and install SUMO
 
 SUMO can be installed either by downloading a binary from SUMO's [home page](https://sumo.dlr.de/docs/Downloads.php).
 Alternatively, SUMO and related packages, like TraCI and netedit, can be installed using pip. We recommend installing with pip, as this guide created for that.
@@ -19,7 +21,7 @@ Install SUMO through pip:
 ```console
 foo@bar:~$ sudo apt-get install sumo sumo-tools sumo-doc
 ```
-Note: You may have to add the SUMO repository before installing the packages:
+**Note**: If this does not work, you may have to add the SUMO repository before installing the packages, with the commands below. The try to install again.
 
 ```console
 foo@bar:~$ sudo add-apt-repository ppa:sumo/stable
@@ -41,7 +43,7 @@ foo@bar:~$ export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
 
 Now, SUMO should be installed, and TraCI should be ready for use.
 
-2. Install dronekit and numpy
+## 3. Install dronekit and numpy
 
 dronekit can be installed directly through pip:
 
@@ -49,7 +51,7 @@ dronekit can be installed directly through pip:
 foo@bar:~$ pip3 install dronekit
 ```
 
-3. Install necessary Python-packages:
+## 4. Install necessary Python-packages:
 
 ```console
 foo@bar:~$ pip3 install numpy
@@ -61,7 +63,7 @@ These instructions have been concretisized from the [installation page](https://
 
 
 ```console
-foo@bar:~$ git clone https://github.com/your-github-userid/ardupilot
+foo@bar:~$ https://github.com/ArduPilot/ardupilot.git
 foo@bar:~$ cd ardupilot
 foo@bar:~$ git submodule update --init --recursive
 ```
