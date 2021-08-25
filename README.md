@@ -203,11 +203,69 @@ We will use the following ports:
 
 1. Start QGroundControl.AppImage
 2. Clik the QGroundControl logo located in the upper left corner of the screen
-3. Click *Application Settings*
-4. Click *Comm Links* in the menu on the left
-5. Click *Add*
+3. Click ***Application Settings***
+4. Click ***Comm Links***,located in menu on the left
+5. Click ***Add***
 
 ![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/drone1.png)
+
+6. Insert the same information from the image above into the fields.
+7. Click ***Ok***
+8. Repeat steps 5, 6 and 7 for the second drone, using the correct port number, and a different *Name*.
+9. In turn, click the rows that were added to QGroundControl and click ***Connect***, in the bottom of the screen.
+10. Exit back to the map by clicking ***Back*** in the top left of the screen.
+
+QGroundControl should now have connected to both drones, and they should be visible on the map.
+It should look something like this:
+
+![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/dronefinish.png)
+
+### 8. Configure the testbed
+
+The last step is do provide the testbed with information on how to connect to the drones, as well as their altitude.
+
+We tell the testbed to connect to the drones ont he following ports:
+
+- drone 1: udp:8901
+- drone 2: udp:8902
+
+The altitude at which each drone will fly is, in this example:
+
+- drone 1: 10
+- drone 2: 5
+
+Navigate to the directory where this repository was cloned, and find the, located inside this pro and edit the file *drones.conf* to contain this informati
+
+Edit 
+```console
+foo@bar:~$ cd Master_thesis_VANET_testbed/code
+```
+
+Verify that the file *drones.conf* contains the following lines:
+
+```console
+foo@bar:~$ cat drones.conf
+
+udp:127.0.0.1:9001 10
+udp:127.0.0.1:9002 5
+```
+
+### 9. Execute the tesbed
+
+Finally, we can execute the testbed.
+while still inside the same directory, *Master_thesis_VANET_testbed/code*, in a new terminal, initialize the tesbed.
+
+```console
+foo@bar:~$ python3 traci-script.py
+```
+
+SUMO open, and initialize the traffic scenario.
+The final step is to press the play button in SUMO, shown in the image below. 
+
+![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/route.png)
+
+This will start the simulated simulated in SUMO as well as the drones.
+In QGroundControl, the drones can be observed on a map, as well as other information like their speed and altitude.
 
 ----
 
