@@ -50,7 +50,7 @@ To utilize TraCI, we have to add SUMO to the PYTHONPATH environment variable:
 foo@bar:~$ export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
 ```
 
-Again, make the environment variable permanent.
+Again, make the environment variable permanent:
 
 ```console
 foo@bar:~$ echo 'export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"'
@@ -120,6 +120,7 @@ foo@bar:~$ ~/Downloads/QGroundControl.AppImage
 ### 6. Install MAVProxy
 
 MAVProxy is used to split data stream so that we can connect to the drones from multiple sources. In our case QGroundControl and the testbed.
+The following instructions were extraced from ArduPilot [documentation](https://ardupilot.org/mavproxy/docs/getting_started/download_and_installation.html).
 
 install MAVProxy and add it to the *PATH*.
 
@@ -134,7 +135,8 @@ foo@bar:~$ echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
 Now, we have downloaded and installed all the required software and tools to run our testbed.
 Next, we need to configure our virtual drones. Here, as an example, we will configure two drones.
 The approach shown here can be extended to more than two drones, we will just use two as an example.
-This instructions have been adapted from ArduPilot [documentation](https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html).
+The instructions have been adapted from ArduPilot [documentation](https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html).
+
 
 #### 6.1 Add origin
 
@@ -163,14 +165,15 @@ foo@bar:~$ echo SYSID_THISMAV 1 > Tools/autotest/default_params/drone1.parm
 foo@bar:~$ echo SYSID_THISMAV 2 > Tools/autotest/default_params/drone2.parm
 ```
 
-## Run the example
+## 7. Run the example
 
-To run the example, thre are a couple of steps that are needed.
+We have included a sample scenario, in the directory called example_traffic_scenario.
+To run this example, there are a couple of steps that are needed.
 First, we need to start our simulated UAVs. Then we tell our testbed how it should connect to them.
 Then, we need to start QGroundControl, and connect to the drones from here as well. This is to get a visual overview of the drones on a map.
 Finally, we can start our testbed. 
 
-### 7. Initialize simulated UAVs
+### 7.1 Initialize simulated UAVs
 ArduPilot provides a script called *sim_vehicle.py*, that initializes an instance of MAVProxy
 
 Again, from the ardupilot folder run the following command to start the first drone: 
@@ -183,13 +186,28 @@ In another console, initialize the other drone:
 foo@bar:~$ Tools/autotest/sim_vehicle.py -L UDD -v ArduCopter --console --add-param-file Tools/autotest/default_params/drone2.parm -I2 --out=tcpin:0.0.0.0:8902 --out=127.0.0.1:9002
 ```
 
-For each drone, this will start a MAVPRoxy instance, which listens on the specified ports.
+For each drone, this will start a MAVPRoxy instance, this instance listens on the following ports for each drone:
 
-- drone 1: tcp:8901, udp:127.0.0.1:9001
-- drone2: tcp:127.0.0.1:8902, udp:127.0.0.1:9002
+- drone 1: tcp:127.0.0.1:8901, udp:127.0.0.1:9001
+- drone 2: tcp:127.0.0.1:8902, udp:127.0.0.1:9002
 
-...
+### 7.2 Connect via QGroundControl
 
+The next to last step is to connect QGroundControl to the drones.
+To do this, we need to define communication links the QGroundControl uses.
+
+We will use the following ports:
+
+- drone 1: tcp:8901
+- drone 2: tcp:8902
+
+1. Start QGroundControl.AppImage
+2. Clik the QGroundControl logo located in the upper left corner of the screen
+3. Click *Application Settings*
+4. Click *Comm Links* in the menu on the left
+5. Click *Add*
+
+![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/drone1.png)
 
 ----
 
