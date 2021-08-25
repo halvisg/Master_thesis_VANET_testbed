@@ -10,10 +10,12 @@ This installation instruction only covers setup and execution of simulated scena
 First we present the installation process. Then, we describe how to execute an example traffic scenario with two drones, that is included in this repository.
 
 This guide has been tested on a clean image of Ubuntu 18.04.3.
+This testbed requires that Python 3.6 is already installed.
 
-There are several prerequisites needed for using this testbed:
 
 ### 1. Clone this repo
+
+The first step is to clone this repository to obtain the code that makes the testbed.
 
 ```console
 foo@bar:~$ git clone https://github.com/halvisg/Master_thesis_VANET_testbed.git
