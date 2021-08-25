@@ -11,6 +11,10 @@ There are several prerequisites needed for using this testbed:
 
 ## 1. Clone this repo
 
+```console
+foo@bar:~$ git clone https://github.com/halvisg/Master_thesis_VANET_testbed.git
+```
+
 ## 2. Download and install SUMO
 
 SUMO can be installed either by downloading a binary from SUMO's [home page](https://sumo.dlr.de/docs/Downloads.php).
@@ -87,14 +91,14 @@ foo@bar:~$ sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreame
 
 The download link for QGroundControl can be found [here](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage) (direct [link](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage)).
 
-After downloading, we may have to add execute-permissions:
+After downloading, we need to add execute-permissions to the binary:
 
 
 ```console
 foo@bar:~$ cd ~/Downloads
 foo@bar:~$ chmod u+x QGroundControl.AppImage
 ```
-Now, QGroundControl can be launched:
+QGroundControl can now be launched:
 
 ```console
 foo@bar:~$ ~/Downloads/QGroundControl.AppImage
