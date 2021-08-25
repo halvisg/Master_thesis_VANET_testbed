@@ -1,6 +1,6 @@
 # Master_thesis_VANET_testbed
 
-This file provides code and installation instruction to complement my master thesis. 
+This README.md provides code and installation instruction to complement my master thesis. 
 Also included in this file, are instructions on how to run an example traffic scenario that is included in this repository.
 
 ## Installation instructions:
@@ -21,10 +21,10 @@ foo@bar:~$ git clone https://github.com/halvisg/Master_thesis_VANET_testbed.git
 
 ### 2. Download and install SUMO
 
-SUMO can be installed either by downloading a binary from SUMO's [home page](https://sumo.dlr.de/docs/Downloads.php).
-Alternatively, SUMO and related packages, like TraCI and netedit, can be installed using pip. We recommend installing with pip, as this guide created for that.
+SUMO can be installed either by downloading a binary from SUMO's [home page](https://sumo.dlr.de/docs/Downloads.php), however, this is not the approach we recommend.
+SUMO and related packages, like TraCI and netedit, can also be installed directly from apt. We recommend installation using apt, as this guide created for that.
 
-Install SUMO through pip:
+Install SUMO through apt:
 
 ```console
 foo@bar:~$ sudo apt-get install sumo sumo-tools sumo-doc
@@ -42,7 +42,7 @@ After installation, it is important to add export the SUMO_HOME environment vari
 foo@bar:~$ export SUMO_HOME=/usr/share/sumo
 ```
 
-Then, make the environment variable permanent:
+Then, make the environment variable permanent (Skipping this step may cause trouble later):
 
 ```console
 foo@bar:~$ echo "export SUMO_HOME=/usr/share/sumo" >> ~/.bashrc
@@ -54,10 +54,10 @@ To utilize TraCI, we have to add SUMO to the PYTHONPATH environment variable:
 foo@bar:~$ export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
 ```
 
-Again, make the environment variable permanent:
+Again, make the environment variable permanent (Skipping this step may cause trouble later):
 
 ```console
-foo@bar:~$ echo 'export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"'
+foo@bar:~$ echo 'export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"' >> ~/.bashrc
 ```
 
 Now, SUMO should be installed, and TraCI should be ready for use.
@@ -72,12 +72,9 @@ foo@bar:~$ pip3 install dronekit
 ```console
 foo@bar:~$ pip3 install numpy
 ```
-```console
-foo@bar:~$ pip3 install MAVProxy --user
-```
 
 ### 4. Clone and install ArduPilot/ArduPilot SITL
-These instructions have been concretisized from the [installation page](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux) provided by ArduPilot.
+These instructions have been boiled down from the [installation documentation,](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux) provided by ArduPilot.
 
 
 ```console
@@ -177,7 +174,9 @@ Finally, we can start our testbed.
 ### 1. Initialize simulated UAVs
 ArduPilot provides a script called *sim_vehicle.py*, that initializes an instance of MAVProxy
 
-Again, from the ardupilot folder run the following command to start the first drone: 
+Again, from the ardupilot folder run the following command to start the first drone:
+
+***Note*** that the first time a drone is initialized with ArduPilot SITL, it will take some time to compile needed libraries. Please be patient. 
 
 ```console
 foo@bar:~$ Tools/autotest/sim_vehicle.py -L UDD -v ArduCopter --console --add-param-file Tools/autotest/default_params/drone1.parm -I1 --out=tcpin:0.0.0.0:8901 --out=127.0.0.1:9001
@@ -254,7 +253,7 @@ udp:127.0.0.1:9002 5
 ### 4. Execute the tesbed
 
 Finally, we can execute the testbed.
-In a new terminal, ***make sure*** *Master_thesis_VANET_testbed/code* directory.
+In a new terminal, ***make sure*** that you are located in the *Master_thesis_VANET_testbed/code* directory.
 Then, initialize the testbed:
 
 ```console
