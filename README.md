@@ -1,9 +1,13 @@
 # Master_thesis_VANET_testbed
-This repository provides code and installation instruction to complement my master thesis. 
+
+This file provides code and installation instruction to complement my master thesis. 
+Also included in this file, are instructions on how to run an example traffic scenario that is included in this repository.
 
 ## Installation instructions:
 
 This installation instruction only covers setup and execution of simulated scenarios. The approach for using it with real drones is quite similar. There are two differences. When using real drones, there is no need for running ArduPilot SITL. The other difference is that MAVProxy needs to be started manually for each drone when real drones are used. For drones simulated with ArduPilot SITL, MAVProxy is automatically started for each drone instance. Also, these installation instructions are as of now only made for systems running Linux.
+
+First we present the installation process. Then, we describe how to execute an example traffic scenario with two drones, that is included in this repository.
 
 This guide has been tested on a clean image of Ubuntu 18.04.3.
 
@@ -71,9 +75,6 @@ foo@bar:~$ pip3 install numpy
 ```console
 foo@bar:~$ pip3 install MAVProxy --user
 ```
-
-### 4. Install necessary Python-packages:
-
 
 ### 4. Clone and install ArduPilot/ArduPilot SITL
 These instructions have been concretisized from the [installation page](https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux) provided by ArduPilot.
@@ -165,7 +166,7 @@ foo@bar:~$ echo SYSID_THISMAV 1 > Tools/autotest/default_params/drone1.parm
 foo@bar:~$ echo SYSID_THISMAV 2 > Tools/autotest/default_params/drone2.parm
 ```
 
-## 7. Run the example
+## Run the example
 
 We have included a sample scenario, in the directory called example_traffic_scenario.
 To run this example, there are a couple of steps that are needed.
@@ -173,7 +174,7 @@ First, we need to start our simulated UAVs. Then we tell our testbed how it shou
 Then, we need to start QGroundControl, and connect to the drones from here as well. This is to get a visual overview of the drones on a map.
 Finally, we can start our testbed. 
 
-### 7.1 Initialize simulated UAVs
+### 1. Initialize simulated UAVs
 ArduPilot provides a script called *sim_vehicle.py*, that initializes an instance of MAVProxy
 
 Again, from the ardupilot folder run the following command to start the first drone: 
@@ -191,7 +192,7 @@ For each drone, this will start a MAVPRoxy instance, this instance listens on th
 - drone 1: tcp:127.0.0.1:8901, udp:127.0.0.1:9001
 - drone 2: tcp:127.0.0.1:8902, udp:127.0.0.1:9002
 
-### 7.2 Connect via QGroundControl
+### 2. Connect via QGroundControl
 
 The next to last step is to connect QGroundControl to the drones.
 To do this, we need to define communication links the QGroundControl uses.
@@ -220,7 +221,7 @@ It should look something like this:
 
 ![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/dronefinish.png)
 
-### 8. Configure the testbed
+### 3. Configure the testbed
 
 The last step is do provide the testbed with information on how to connect to the drones, as well as their altitude.
 
@@ -250,7 +251,7 @@ udp:127.0.0.1:9001 10
 udp:127.0.0.1:9002 5
 ```
 
-### 9. Execute the tesbed
+### 4. Execute the tesbed
 
 Finally, we can execute the testbed.
 In a new terminal, ***make sure*** *Master_thesis_VANET_testbed/code* directory.
