@@ -74,7 +74,7 @@ From the ardupilot directory, run:
 foo@bar:~$ Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
 
-5. Install QGroundControl
+## 5. Install QGroundControl
 The installation instructions from this step is taken from QGroundControl's [documentation](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html).
 
 Some initial setup is required for QGroundControl to run correctly:
@@ -87,13 +87,20 @@ foo@bar:~$ sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreame
 
 The download link for QGroundControl can be found [here](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage) (direct [link](https://s3-us-west-2.amazonaws.com/qgroundcontrol/latest/QGroundControl.AppImage)).
 
-After downloading, QGrounControl can be started:
+After downloading, we may have to add execute-permissions:
+
+
+```console
+foo@bar:~$ cd ~/Downloads
+foo@bar:~$ chmod u+x QGroundControl.AppImage
+```
+Now, QGroundControl can be launched:
 
 ```console
 foo@bar:~$ ~/Downloads/QGroundControl.AppImage
 ```
 
-6. Configure ArduPilot SITL
+## 6. Configure ArduPilot SITL
 
 Now, we have downloaded and installed all the required software and tools to run our testbed.
 
