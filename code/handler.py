@@ -135,11 +135,11 @@ class Handler:
                     if abs(sim_vehicle.prev_bearing - sim_vehicle.current_bearing) > 5:
                         # We are in a turn, make sure to include the waypoint(s)
                         sim_vehicle.drone_turning = True
-                        traci.vehicle.setColor(sim_vehicle.name, (255, 0, 0))
+                        traci.vehicle.setColor(sim_vehicle.name, (255, 0, 0,255))
                         self._send_position(traci, sim_vehicle, cur_lon, cur_lat, 0)
                     else:
                         # Drone is running in a straight line, send waypoints rarely
-                        traci.vehicle.setColor(sim_vehicle.name, (255, 0, 255))
+                        traci.vehicle.setColor(sim_vehicle.name, (255, 0, 255,255))
 
                         if sim_vehicle.drone_turning:
                             # Drone has just turned, reset cycle

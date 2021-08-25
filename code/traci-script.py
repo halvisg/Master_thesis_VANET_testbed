@@ -12,8 +12,8 @@ import handler
 #udp:127.0.0.1:8999 7
 
 step_length = "0.1"
-sumoBinary = "<sumo-gui>" # <sumo-gui>: Path to sumo-gui binary
-sumoCmd = [sumoBinary, "-c", "<sumocfg>>", "--step-length", step_length] # <sumocfg>: Path to sumocfg file
+sumoBinary = "/usr/bin/sumo-gui" # <sumo-gui>: Path to sumo-gui binary
+sumoCmd = [sumoBinary, "-c", "../example_traffic_scenario/line.sumocfg", "--step-length", step_length] # <sumocfg>: Path to sumocfg file
 traci.start(sumoCmd)
 step = 0
 simulation_end = False
