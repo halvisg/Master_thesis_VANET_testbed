@@ -107,22 +107,42 @@ foo@bar:~$ ~/Downloads/QGroundControl.AppImage
 ## 6. Configure ArduPilot SITL
 
 Now, we have downloaded and installed all the required software and tools to run our testbed.
+Next, we need to configure our virtual drones. Here, as an example, we will configure two drones.
+The approach shown here can be extended to more than two drones, we will just use two as an example.
+This instructions have been adapted from ArduPilot [documentation](https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html).
 
+### 6.1 Add origin
 
+The simulated drones need to know where on earth they will be located when initialized. 
+In this example, the drones will have their home location set to Udduvoll Airfield in Trondheim.
+
+We add this location to a configuratio file, defined by ardupilot.
+From the ardupilot folder:
 
 ```console
-foo@bar:~$ pip3 install eclipse-sumo
+foo@bar:~$ echo "UDD=63.319511,10.272135,0,60" >> Tools/autotest/locations.txt
 ```
-2. Download and install ArduPilot SITL
-To install ArduPilot SITL, follow the instructions provided by ArduPilot, [found here](https://ardupilot.org/dev/docs/setting-up-sitl-on-linux.html)
 
-3. Clone this git repository
+### 6.2 Set unique SYS_THISMAV
+
+For the MAVLink data streams to be routed correctly, each drone needs a unique SYS_THISMAV (MAVLink ID).
+To do this, we need to make a parameter file for each drone, that will be during initialization.
+We create one parameter file for each drone.
+
+Again, from the ardupilot folder:
 
 ```console
-foo@bar:~$ git clone https://github.com/halvisg/Master_thesis_VANET_testbed.git
+foo@bar:~$ echo SYS_THISMAV 1 > Tools/autotest/default_params/drone1.parm
+```
+```console
+foo@bar:~$ echo SYS_THISMAV 2 > Tools/autotest/default_params/drone2.parm
 ```
 
-4. Configure virtual drones
+
+
+
+
+
 
 5. Run example
 An example scenario is included in the /code folder. Scenarios like this can be created with for instance netedit. 
