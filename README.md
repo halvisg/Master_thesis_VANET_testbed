@@ -253,22 +253,17 @@ udp:127.0.0.1:9002 5
 ### 9. Execute the tesbed
 
 Finally, we can execute the testbed.
-while still inside the same directory, *Master_thesis_VANET_testbed/code*, in a new terminal, initialize the tesbed.
+In a new terminal, ***make sure*** *Master_thesis_VANET_testbed/code* directory.
+Then, initialize the testbed:
 
 ```console
 foo@bar:~$ python3 traci-script.py
 ```
 
-SUMO open, and initialize the traffic scenario.
+SUMO will open, and initialize the traffic scenario.
 The final step is to press the play button in SUMO, shown in the image below. 
 
 ![QGC GUI](https://home.samfundet.no/~halvogro/ting/bilder/route.png)
 
 This will start the simulated simulated in SUMO as well as the drones.
 In QGroundControl, the drones can be observed on a map, as well as other information like their speed and altitude.
-
-----
-
-5. Run example
-An example scenario is included in the /code folder. Scenarios like this can be created with for instance netedit. 
-
