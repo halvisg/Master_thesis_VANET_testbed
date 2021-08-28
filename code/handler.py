@@ -51,9 +51,6 @@ class Handler:
 
     def update_start_point_reached(self):
         self.start_points_reached += 1
-        print("HEI")
-        print(len(self.vehicle_list))
-        print(self.start_points_reached)
         if self.start_points_reached == len(self.vehicle_list):
             self.all_startpoints_reached = True
 
